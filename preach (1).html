@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KING ACHU | Preach</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #070707;
+            --card-bg: rgba(18, 18, 18, 0.8);
+            --text-main: #ffffff;
+            --text-sub: #888888;
+            --brand-yellow: #e2f700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background: radial-gradient(circle at top right, rgba(226, 247, 0, 0.05), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.02), transparent 50%),
+                        #070707;
+        }
+
+        /* PREMIUM NAVIGATION BAR */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+            width: 100%;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--brand-yellow);
+        }
+
+        nav {
+            display: flex;
+            gap: 50px;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px 0;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        nav a:hover {
+            opacity: 1;
+        }
+
+        nav a.active {
+            opacity: 1;
+            color: var(--text-main);
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--brand-yellow);
+        }
+
+        /* CONTENT WORKSPACE WRAPPER */
+        .content-wrapper {
+            flex: 1;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        /* MASTER SECTION LAYOUTS */
+        .preach-section {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        .section-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .section-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* FILTER UTILITIES */
+        .filter-select, .search-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            outline: none;
+            transition: border-color 0.25s;
+        }
+        .filter-select:focus, .search-input:focus {
+            border-color: var(--brand-yellow);
+        }
+        .filter-select option {
+            background: #121212;
+            color: var(--text-main);
+        }
+
+        /* FIXED SCROLL CONTAINERS */
+        .scroll-container {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Custom Scrollbar */
+        .scroll-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .scroll-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.01);
+            border-radius: 10px;
+        }
+        .scroll-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .scroll-container::-webkit-scrollbar-thumb:hover {
+            background: var(--brand-yellow);
+        }
+
+        /* SECTION 1: PROVERBS & THOUGHTS */
+        .blog-post {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 3px solid var(--brand-yellow);
+            padding: 25px;
+            border-radius: 0 14px 14px 0;
+            text-align: left;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .post-date {
+            font-size: 0.75rem;
+            color: var(--brand-yellow);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .blog-post p {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* SECTION 2: BOOK AN APPOINTMENT */
+        .appointment-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .appointment-box p {
+            color: var(--text-sub);
+            font-size: 1rem;
+            max-width: 500px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .meeting-platforms {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .meet-link {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.25s ease;
+        }
+
+        .meet-link.google:hover {
+            border-color: #ea4335;
+            background: rgba(234, 67, 53, 0.08);
+        }
+
+        .meet-link.teams:hover {
+            border-color: #464eb8;
+            background: rgba(70, 78, 184, 0.08);
+        }
+
+        /* SECTION 3: GUEST BOOK */
+        .guestbook-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 35px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 35px;
+        }
+
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-row label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-sub);
+        }
+
+        .guestbook-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 14px 18px;
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.25s ease;
+        }
+
+        .guestbook-input:focus {
+            border-color: var(--brand-yellow);
+        }
+
+        textarea.guestbook-input {
+            height: 100px;
+            resize: none;
+        }
+
+        .submit-btn {
+            background: var(--brand-yellow);
+            color: #000;
+            border: none;
+            padding: 14px 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 30px;
+            cursor: pointer;
+            align-self: flex-start;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: scale(1.02);
+            opacity: 0.9;
+        }
+
+        .comment-card {
+            background: rgba(255, 255, 255, 0.01);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            text-align: left;
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+
+        .comment-author {
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .comment-time {
+            color: var(--text-sub);
+        }
+
+        .comment-card p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* PREMIUM FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            background: rgba(0, 0, 0, 0.2);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 30px 5%; flex-direction: column; gap: 25px; }
+            nav { gap: 30px; }
+            .preach-section { padding: 30px 20px; }
+            .section-header-row { flex-direction: column; align-items: stretch; }
+            .meeting-platforms { flex-direction: column; gap: 12px; }
+            .submit-btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">KING <span>ACHU</span></div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="music.html">Music</a>
+            <a href="preach.html" class="active">Preach</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="content-wrapper">
+
+        <section class="preach-section">
+            <div class="section-header-row">
+                <div>
+                    <h2>Proverbs and Thoughts</h2>
+                    <div class="section-subtitle">Insights & Daily Wisdom</div>
+                </div>
+                <select class="filter-select" id="proverbFilter" onchange="filterProverbs()">
+                    <option value="all">All Dates</option>
+                    <option value="may2026">May 2026</option>
+                    <option value="apr2026">April 2026</option>
+                </select>
+            </div>
+            
+            <div class="scroll-container" id="proverbsContainer">
+                <div class="blog-post" data-date="may2026">
+                    <div class="post-date">May 21, 2026</div>
+                    <p>"True rhythm is found not only in the beats we create, but in the patience we carry through the quiet spaces."</p>
+                </div>
+                <div class="blog-post" data-date="may2026">
+                    <div class="post-date">May 15, 2026</div>
+                    <p>"Focus on building structural integrity before chasing structural volume. Consistency outlives the sudden noise every single time."</p>
+                </div>
+                <div class="blog-post" data-date="apr2026">
+                    <div class="post-date">April 28, 2026</div>
+                    <p>"A wise artist protects their execution process just as much as they fight for their finished vision."</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="preach-section">
+            <h2>Book an Appointment</h2>
+            <div class="section-subtitle">Schedule sessions directly</div>
+            <div class="appointment-box" style="margin-top: 30px;">
+                <p>Select your preferred platform below to open up our direct appointment scheduling pipelines for video alignments or audio sync sessions.</p>
+                <div class="meeting-platforms">
+                    <a href="YOUR_GOOGLE_MEET_LINK" class="meet-link google" target="_blank">
+                        <i class="fa-brands fa-google"></i>
+                        <span>Google Meet</span>
+                    </a>
+                    <a href="YOUR_MICROSOFT_TEAMS_LINK" class="meet-link teams" target="_blank">
+                        <i class="fa-solid fa-video"></i>
+                        <span>MS Teams</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="preach-section">
+            <div class="section-header-row">
+                <div>
+                    <h2>Guest Book</h2>
+                    <div class="section-subtitle">Open public board / No sign-in</div>
+                </div>
+                <select class="filter-select" id="commentFilter" onchange="filterComments()">
+                    <option value="all">All Dates</option>
+                    <option value="may2026">May 2026</option>
+                    <option value="apr2026">April 2026</option>
+                </select>
+            </div>
+            
+            <form class="guestbook-form" id="commentForm">
+                <div class="form-row">
+                    <label for="guest-name">Name or Alias</label>
+                    <input type="text" id="guest-name" class="guestbook-input" placeholder="Anonymous / Your Name" required>
+                </div>
+                <div class="form-row">
+                    <label for="guest-message">Your Thoughts</label>
+                    <textarea id="guest-message" class="guestbook-input" placeholder="Drop your comment or feedback here..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Leave Comment</button>
+            </form>
+
+            <div class="scroll-container" id="commentsContainer">
+                <div class="comment-card" data-date="may2026">
+                    <div class="comment-header">
+                        <span class="comment-author">Marcus D.</span>
+                        <span class="comment-time">May 21, 2026</span>
+                    </div>
+                    <p>The new single structure is absolutely insane. Keeping close tabs on the upcoming releases here.</p>
+                </div>
+                <div class="comment-card" data-date="may2026">
+                    <div class="comment-header">
+                        <span class="comment-author">Evelyn</span>
+                        <span class="comment-time">May 20, 2026</span>
+                    </div>
+                    <p>Clean wisdom lines in the proverbs area. Highly inspired by your perspective.</p>
+                </div>
+                <div class="comment-card" data-date="apr2026">
+                    <div class="comment-header">
+                        <span class="comment-author">T-Blast</span>
+                        <span class="comment-time">April 18, 2026</span>
+                    </div>
+                    <p>Production values on the tracks are top notch. Pure heat.</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 KING ACHU. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script>
+        function filterProverbs() {
+            const filterValue = document.getElementById('proverbFilter').value;
+            const posts = document.querySelectorAll('.blog-post');
+            
+            posts.forEach(post => {
+                if (filterValue === 'all' || post.getAttribute('data-date') === filterValue) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        }
+
+        function filterComments() {
+            const filterValue = document.getElementById('commentFilter').value;
+            const cards = document.querySelectorAll('.comment-card');
+            
+            cards.forEach(card => {
+                if (filterValue === 'all' || card.getAttribute('data-date') === filterValue) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Live add functionality for instant feedback on submission
+        document.getElementById('commentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('guest-name').value;
+            const message = document.getElementById('guest-message').value;
+            const container = document.getElementById('commentsContainer');
+            
+            const newComment = document.createElement('div');
+            newComment.className = 'comment-card';
+            newComment.setAttribute('data-date', 'may2026');
+            newComment.innerHTML = `
+                <div class="comment-header">
+                    <span class="comment-author">${name}</span>
+                    <span class="comment-time">May 21, 2026</span>
+                </div>
+                <p>${message}</p>
+            `;
+            
+            container.insertBefore(newComment, container.firstChild);
+            document.getElementById('commentForm').reset();
+            filterComments();
+        });
+    </script>
+
+</body>
+</html>

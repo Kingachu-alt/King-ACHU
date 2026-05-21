@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KING ACHU | Contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #070707;
+            --card-bg: rgba(18, 18, 18, 0.8);
+            --text-main: #ffffff;
+            --text-sub: #888888;
+            --brand-yellow: #e2f700;
+            
+            /* Clean platform brand colors */
+            --facebook-color: #1877F2;
+            --instagram-color: #E1306C;
+            --tiktok-color: #00f2fe; /* Custom glowing tone for dark UI */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background: radial-gradient(circle at top right, rgba(226, 247, 0, 0.05), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.02), transparent 50%),
+                        #070707;
+        }
+
+        /* PREMIUM NAVIGATION BAR */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+            width: 100%;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--brand-yellow);
+        }
+
+        nav {
+            display: flex;
+            gap: 50px;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px 0;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        nav a:hover {
+            opacity: 1;
+        }
+
+        nav a.active {
+            opacity: 1;
+            color: var(--text-main);
+        }
+
+        /* Underline indicator for the active page */
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--brand-yellow);
+        }
+
+        /* HIGH-END CONTAINER */
+        .content-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .contact-container {
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            background: var(--card-bg);
+            padding: 50px 35px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .contact-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+        }
+
+        /* PLATFORM ROW LAYOUT */
+        .links-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .platform-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 28px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .platform-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .platform-link i {
+            font-size: 1.4rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .platform-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-action {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 8px 18px;
+            border-radius: 30px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.25s ease;
+        }
+
+        /* Hover states with clean brand glows matching your style */
+        .platform-link.instagram:hover {
+            background: rgba(225, 48, 108, 0.08);
+            border-color: var(--instagram-color);
+            box-shadow: 0 0 20px rgba(225, 48, 108, 0.15);
+        }
+        .platform-link.instagram:hover .btn-action {
+            background: var(--instagram-color);
+            border-color: var(--instagram-color);
+            color: #fff;
+        }
+
+        .platform-link.tiktok:hover {
+            background: rgba(0, 242, 254, 0.05);
+            border-color: var(--tiktok-color);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.15);
+        }
+        .platform-link.tiktok:hover .btn-action {
+            background: var(--tiktok-color);
+            border-color: var(--tiktok-color);
+            color: #000;
+        }
+
+        .platform-link.facebook:hover {
+            background: rgba(24, 119, 242, 0.08);
+            border-color: var(--facebook-color);
+            box-shadow: 0 0 20px rgba(24, 119, 242, 0.15);
+        }
+        .platform-link.facebook:hover .btn-action {
+            background: var(--facebook-color);
+            border-color: var(--facebook-color);
+            color: #fff;
+        }
+
+        /* FOOTER STYLE */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.75rem;
+            color: var(--text-sub);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            header { padding: 30px 5%; flex-direction: column; gap: 25px; }
+            nav { gap: 30px; }
+            .contact-container { padding: 45px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">KING <span>ACHU</span></div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="music.html">Music</a>
+            <a href="contact.html" class="active">Contact</a>
+        </nav>
+    </header>
+
+    <div class="content-wrapper">
+        <div class="contact-container">
+            
+            <h1>Collabs & Bookings</h1>
+            <div class="contact-subtitle">Get in touch via socials</div>
+
+            <div class="links-list">
+                
+                <a href="YOUR_INSTAGRAM_LINK" class="platform-link instagram" target="_blank">
+                    <div class="platform-left">
+                        <i class="fa-brands fa-instagram" style="color: var(--instagram-color);"></i>
+                        <span class="platform-name">Instagram</span>
+                    </div>
+                    <span class="btn-action">DM</span>
+                </a>
+
+                <a href="YOUR_TIKTOK_LINK" class="platform-link tiktok" target="_blank">
+                    <div class="platform-left">
+                        <i class="fa-brands fa-tiktok" style="color: var(--tiktok-color);"></i>
+                        <span class="platform-name">TikTok</span>
+                    </div>
+                    <span class="btn-action">Message</span>
+                </a>
+
+                <a href="YOUR_FACEBOOK_LINK" class="platform-link facebook" target="_blank">
+                    <div class="platform-left">
+                        <i class="fa-brands fa-facebook-f" style="color: var(--facebook-color);"></i>
+                        <span class="platform-name">Facebook</span>
+                    </div>
+                    <span class="btn-action">Connect</span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 KING ACHU. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+</body>
+</html>

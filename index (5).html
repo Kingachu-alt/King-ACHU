@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King ACHU | Official Website</title>
+    <style>
+        /* --- Color Palette & Deep Resets --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+            background-color: #050505; /* Deep luxury black */
+            color: #FFFFFF; /* White for Purity */
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Luxury Header & Nav Overlay --- */
+        header {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), #050505), 
+                        url('https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+        }
+
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 10%;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: #FFFF00; /* Yellow for Gemini */
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 50px;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #FFFF00;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 8px #FFFF00;
+        }
+
+        .nav-links a:hover {
+            color: #FFFF00;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero-text {
+            position: absolute;
+            bottom: 18%;
+            left: 10%;
+            max-width: 700px;
+        }
+
+        .hero-text h1 {
+            font-size: 5.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            line-height: 0.95;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: #FFFF00;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 500;
+        }
+
+        /* --- Seamless Pyramid Section with Dedicated Visual BG --- */
+        .pyramid-section {
+            padding: 60px 20px 120px 20px; /* Reduced top padding to tighten the transition gap */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 85vh;
+            position: relative;
+            /* Atmospheric, dark abstract rock/smoke texture background for the pyramid zone */
+            background: linear-gradient(to bottom, #050505, rgba(5,5,5,0.85), #030303), 
+                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            background-attachment: fixed; /* Parallax style depth effect as you scroll */
+        }
+
+        /* Continuous Triangle Wrapper */
+        .pyramid-container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px; /* Clean gap breaks between layers */
+            z-index: 2;
+        }
+
+        /* Base tier block styling */
+        .pyramid-layer-link {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            position: relative; /* Context for hover description placement */
+        }
+
+        .tier {
+            background-color: rgba(18, 18, 18, 0.85); /* Semi-transparent luxury backing to let texture peek through */
+            backdrop-filter: blur(5px); /* Premium frost glass effect */
+            border: 1px solid rgba(255, 255, 255, 0.15); /* Purity subtle lines */
+            height: 110px; /* Slightly taller for striking presentation */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #E0E0E0;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 1.25rem;
+            transition: background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                        color 0.3s ease, 
+                        transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                        box-shadow 0.4s ease, 
+                        border-color 0.4s ease;
+        }
+
+        /* 🔥 ILLUMINATION & HOVER EFFECTS 🔥 */
+        .pyramid-layer-link:hover .tier {
+            background-color: #FFFF00; /* Bright Gemini Yellow */
+            color: #000000; /* Contrast Black */
+            border-color: #FFFF00;
+            transform: translateY(-4px) scale(1.02);
+            z-index: 5;
+            box-shadow: 0 10px 40px rgba(255, 255, 0, 0.5), 
+                        0 0 20px rgba(255, 255, 0, 0.35);
+        }
+
+        /* --- Exact Math Slopes for a Uniform Triangle Outline --- */
+        
+        /* Level 1: Music (Peak) */
+        .layer-music {
+            width: 25%;
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            padding-top: 35px;
+        }
+
+        /* Level 2: Preach */
+        .layer-preach {
+            width: 50%;
+            clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* Level 3: Contact */
+        .layer-contact {
+            width: 75%;
+            clip-path: polygon(16.66% 0%, 83.33% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* Level 4: Merch (Base) */
+        .layer-merch {
+            width: 100%;
+            clip-path: polygon(12.5% 0%, 87.5% 0%, 100% 100%, 0% 100%);
+        }
+
+        /* --- Hover Floating Descriptions (Tooltips) --- */
+        .description-box {
+            position: absolute;
+            background-color: #121212;
+            color: #FFFFFF;
+            border: 1px solid #FFFF00;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: none;
+            white-space: nowrap;
+            pointer-events: none; /* Stops tooltips from glitching cursor physics */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 5px 15px rgba(255, 255, 0, 0.15);
+        }
+
+        /* Positioning the popup boxes dynamically around the shape edges */
+        .layer-music-link .description-box {
+            top: -45px;
+            transform: translateY(10px);
+        }
+        .layer-preach-link .description-box,
+        .layer-contact-link .description-box,
+        .layer-merch-link .description-box {
+            bottom: -45px;
+            transform: translateY(-10px);
+        }
+
+        /* Reveal tooltips smoothly on hover */
+        .pyramid-layer-link:hover .description-box {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* --- Premium Minimal Footer --- */
+        footer {
+            background-color: #030303;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-logo {
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .footer-logo span {
+            color: #FFFF00;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .footer-socials a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888888;
+            transition: color 0.3s ease;
+        }
+
+        .footer-socials a:hover {
+            color: #FFFF00;
+            text-shadow: 0 0 5px rgba(255,255,0,0.5);
+        }
+
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: #444444;
+            letter-spacing: 1px;
+            margin-top: 10px;
+        }
+
+        /* --- Fluid Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 3.5rem;
+            }
+            nav {
+                padding: 30px 5%;
+            }
+            .nav-links {
+                gap: 25px;
+            }
+            .tier {
+                height: 85px;
+                font-size: 1.05rem;
+            }
+            .description-box {
+                display: none; /* Hide floating descriptions on mobile screens for visual purity */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Banner & Overlay Navigation -->
+    <header id="home">
+        <nav>
+            <div class="logo">King <span>ACHU</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="https://example.com/music" target="_blank">Music</a></li>
+                <li><a href="https://example.com/contact" target="_blank">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <div class="hero-text">
+            <h1>King ACHU</h1>
+            <p>Originality • Gemini Energy • Purity</p>
+        </div>
+    </header>
+
+    <!-- Scroll Down Interactive Pyramid Section -->
+    <section class="pyramid-section">
+        <div class="pyramid-container">
+            <!-- Level 1: Music (Top Peak) -->
+            <a href="music.html" class="pyramid-layer-link layer-music-link">
+                <div class="tier layer-music">Music</div>
+                <div class="description-box">Listen to the latest discography & drops</div>
+            </a>
+
+            <!-- Level 2: Preach -->
+            <a href="preach.html" class="pyramid-layer-link layer-preach-link">
+                <div class="tier layer-preach">Preach</div>
+                <div class="description-box">Explore thoughts, lyrics, and messages</div>
+            </a>
+
+            <!-- Level 3: Contact -->
+            <a href="contact.html" class="pyramid-layer-link layer-contact-link">
+                <div class="tier layer-contact">Contact</div>
+                <div class="description-box">Get in touch for bookings & press</div>
+            </a>
+
+            <!-- Level 4: Merch (Base) -->
+            <a href="merch.html" class="pyramid-layer-link layer-merch-link">
+                <div class="tier layer-merch">Merch</div>
+                <div class="description-box">Shop exclusive clothing & limited products</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Premium Footer Section -->
+    <footer>
+        <div class="footer-logo">King <span>ACHU</span></div>
+        <ul class="footer-socials">
+            <li><a href="#" target="_blank">Instagram</a></li>
+            <li><a href="#" target="_blank">Spotify</a></li>
+            <li><a href="#" target="_blank">YouTube</a></li>
+            <li><a href="#" target="_blank">X / Twitter</a></li>
+        </ul>
+        <div class="footer-copyright">
+            &copy; 2026 King ACHU. All Rights Reserved. Designed for Originality.
+        </div>
+    </footer>
+
+</body>
+</html>
